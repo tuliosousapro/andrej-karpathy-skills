@@ -1,22 +1,39 @@
 #!/usr/bin/env bash
-# script to install karpathy-guidelines skill into a local project
+# Install karpathy-guidelines skill into a project for a specific agent.
+# Usage: ./install.sh [agent]
+# Agents: cursor, gemini, claude, openclaw, copilot, windsurf, hermes, codex, antigravity
 
-TARGET_FILE=".cursorrules"
+set -e
 
-if [ "$1" != "" ]; then
-    TARGET_FILE="$1"
+SKILL_URL="https://raw.githubusercontent.com/tuliosousapro/andrej-karpathy-skills/main/skills/karpathy-guidelines/SKILL.md"
+EXAMPLES_URL="https://raw.githubusercontent.com/tuliosousapro/andrej-karpathy-skills/main/skills/karpathy-guidelines/References/EXAMPLES.md"
+
+declare -A AGENT_DIRS=(
+  [cursor]=".cursor/skills/karpathy-guidelines"
+  [gemini]=".gemini/skills/karpathy-guidelines"
+  [claude]=".claude/skills/karpathy-guidelines"
+  [openclaw]=".openclaw/skills/karpathy-guidelines"
+  [copilot]=".github/skills/karpathy-guidelines"
+  [windsurf]=".windsurf/skills/karpathy-guidelines"
+  [hermes]=".hermes/skills/karpathy-guidelines"
+  [codex]=".codex/skills/karpathy-guidelines"
+  [antigravity]=".gemini/skills/karpathy-guidelines"
+)
+
+AGENT="${1:-cursor}"
+
+if [[ -z "${AGENT_DIRS[$AGENT]}" ]]; then
+  echo "Unknown agent: $AGENT"
+  echo "Supported: ${!AGENT_DIRS[*]}"
+  exit 1
 fi
 
-echo "Installing Karpathy Guidelines into $TARGET_FILE..."
+TARGET_DIR="${AGENT_DIRS[$AGENT]}"
 
-# Fetch the raw markdown content
-CONTENT=$(curl -sL https://raw.githubusercontent.com/tuliosousapro/andrej-karpathy-skills/main/skills/karpathy-guidelines/SKILL.md)
+echo "Installing karpathy-guidelines for $AGENT -> $TARGET_DIR"
 
-if [ $? -ne 0 ] || [ -z "$CONTENT" ]; then
-    echo "Error: Failed to fetch skill from GitHub."
-    exit 1
-fi
+mkdir -p "$TARGET_DIR/References"
+curl -sL "$SKILL_URL" -o "$TARGET_DIR/SKILL.md"
+curl -sL "$EXAMPLES_URL" -o "$TARGET_DIR/References/EXAMPLES.md"
 
-echo -e "\n\n$CONTENT\n" >> "$TARGET_FILE"
-
-echo "✅ Installed successfully in $TARGET_FILE!"
+echo "Done."
