@@ -6,24 +6,22 @@ Behavioral guidelines to reduce common LLM coding mistakes, derived from Andrej 
 
 - Markdown
 - LLM Capability/Preference Skill
+## Setup for Coding Agents (Cursor, Windsurf, Claude, OpenClaw, Hermes, etc.)
 
-## Setup for Coding Agents (Cursor / Windsurf / Cline)
+We recommend using [SkillKit](https://github.com/rohitg00/skillkit) to install this skill across all your AI agents. SkillKit automatically translates the `SKILL.md` to your specific agent and manages updates.
 
-To make these rules globally available to your AI coding agents, append the skill to your project's agent rules file.
-
-**Using curl (Mac/Linux):**
+**Using SkillKit (Recommended):**
 ```bash
-# For Cursor
-curl -sL https://raw.githubusercontent.com/tuliosousapro/andrej-karpathy-skills/main/skills/karpathy-guidelines/SKILL.md >> .cursorrules
-
-# For Windsurf
-curl -sL https://raw.githubusercontent.com/tuliosousapro/andrej-karpathy-skills/main/skills/karpathy-guidelines/SKILL.md >> .windsurfrules
+npx skillkit install tuliosousapro/andrej-karpathy-skills
 ```
 
-**Using the installation script:**
+**Using curl (Manual fallback):**
 ```bash
-chmod +x install.sh
-./install.sh .cursorrules
+# Append to .cursorrules
+curl -sL https://raw.githubusercontent.com/tuliosousapro/andrej-karpathy-skills/main/skills/karpathy-guidelines/SKILL.md >> .cursorrules
+
+# Append to .windsurfrules
+curl -sL https://raw.githubusercontent.com/tuliosousapro/andrej-karpathy-skills/main/skills/karpathy-guidelines/SKILL.md >> .windsurfrules
 ```
 
 Or just copy the raw contents of `skills/karpathy-guidelines/SKILL.md` directly.
