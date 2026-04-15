@@ -2,6 +2,25 @@
 
 Real-world code examples demonstrating the four principles. Each example shows what LLMs commonly do wrong and how to fix it.
 
+## Table of Contents
+
+| Section | Line |
+|---|---|
+| 1. Think Before Coding | ~7 |
+| - Example 1: Hidden Assumptions | ~9 |
+| - Example 2: Multiple Interpretations | ~57 |
+| 2. Simplicity First | ~97 |
+| - Example 1: Over-abstraction | ~99 |
+| - Example 2: Speculative Features | ~162 |
+| 3. Surgical Changes | ~225 |
+| - Example 1: Drive-by Refactoring | ~227 |
+| - Example 2: Style Drift | ~293 |
+| 4. Goal-Driven Execution | ~370 |
+| - Example 1: Vague vs. Verifiable | ~372 |
+| - Example 2: Multi-Step with Verification | ~413 |
+| - Example 3: Test-First Verification | ~454 |
+| Anti-Patterns Summary | ~498 |
+
 ---
 
 ## 1. Think Before Coding
